@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry:  __dirname + '/app/main.jsx',
+  entry:  __dirname + '/app/main.js',
   output: {
     path: __dirname + '/public',
     filename: 'bundle.js'
@@ -18,7 +18,7 @@ module.exports = {
         loader: "json"
       },
       {
-        test: /\.jsx$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel',
         query: {
