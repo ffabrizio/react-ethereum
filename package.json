@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "alt": "^0.18.2",
     "es6-promise": "^3.1.2",
     "object-assign": "^4.0.1",
     "react": "^0.14.7",

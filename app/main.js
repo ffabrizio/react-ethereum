@@ -1,19 +1,11 @@
 console.log('main.js')
 
-import React from 'react';
-import {render} from 'react-dom';
-import Greeter from './components/greeter';
-import Login from './components/login';
-import Payment from './components/payment';
-import Balance from './components/balance';
+import React from 'react'
+import {render} from 'react-dom'
+import App from './components/app'
 
-import './styles/main.css';
+import './styles/main.css'
 
 render(
-  <main>
-    <Greeter />
-    <Login />
-    <Balance />
-    <Payment />
-  </main>, 
-  document.getElementById('root'));
+  <App />, 
+  document.getElementById('root'))
