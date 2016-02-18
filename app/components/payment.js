@@ -8,7 +8,7 @@ class Payment extends Component{
         <h4>Payment</h4>
         <p>{keys.transactions.to}: <input /></p>
         <p>{keys.transactions.value}: <input /></p>
-        <p><button /></p>
+        <p><button>Pay</button></p>
       </div>
     );
   }

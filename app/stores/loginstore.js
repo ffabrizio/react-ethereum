@@ -6,16 +6,21 @@ class LoginStore {
   constructor() {
     
     this.bindActions(LoginActions);
-    this.data = [];
     
+    this.accounts = [];
+    this.loggedin = false;
   }
   
-   onLogin(data) {
+   onLogin(login) {
       
-        this.data = {
-          loggedin : true,
-          balances: data
-        };
+        this.accounts.push({name: login.name});
+        this.loggedin = true;
+    }
+    
+    onRegister(reg) {
+      
+        this.accounts.push({name: reg.name});
+        this.loggedin = true;
     }
 }
 

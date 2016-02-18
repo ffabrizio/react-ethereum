@@ -3,8 +3,9 @@ import alt from '../alt';
 class LoginActions {
   constructor() {
         this.generateActions(
-            'update',
-            'login'
+            'supdate',
+            'login',
+            'register'
         );
     }
 }

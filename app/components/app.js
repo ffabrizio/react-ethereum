@@ -10,7 +10,13 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = this.getStateFromStores(); 
+    this.state = this.refresh();
+  }
+  
+  refresh () {
+    var storeState = LoginStore.getState();
+    console.log(storeState)
+    return storeState;
   }
   
   componentDidMount() {
@@ -20,28 +26,22 @@ class App extends Component {
   componentWillUnmount() {
     LoginStore.unlisten(this.onChange.bind(this));
   }
-  
-  getStateFromStores () {
-    return LoginStore.getState();
-  }
-  
+
   onChange() {
-    this.state = this.getStateFromStores();
-    console.log(this.state)
+    this.setState(this.refresh());
   }
-  
-  loginClick() {
-    LoginActions.login({name: 1})
-  }
-  
+
   render() {
+    var accName = '';
+    if (this.state.accounts.length){
+      accName = this.state.accounts[0].name
+    }
     return (
       <div>
         <Greeter />
-        <Login />
+        <Login loggedin={this.state.loggedin} name={accName} />
         <Balance />
         <Payment />
-        <button onClick={this.loginClick} />
       </div>
     )
   }
