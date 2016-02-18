@@ -3,32 +3,35 @@ import Greeter from './greeter'
 import Login from './login'
 import Payment from './payment'
 import Balance from './balance'
-import AppActions from '../actions'
-import AppStore from '../stores'
+import LoginActions from '../actions/loginactions'
+import LoginStore from '../stores/loginstore'
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = AppStore.getState();
+    this.state = this.getStateFromStores(); 
   }
   
   componentDidMount() {
-    AppStore.listen(this.onChange.bind(this));
-    AppActions.fetch();
+    LoginStore.listen(this.onChange.bind(this));
   }
   
   componentWillUnmount() {
-    AppStore.unlisten(this.onChange);
+    LoginStore.unlisten(this.onChange.bind(this));
   }
   
-  onChange(state) {
-    this.setState(state);
-    console.log(state)
+  getStateFromStores () {
+    return LoginStore.getState();
   }
   
-  click() {
-    AppActions.update([2,5,6])
+  onChange() {
+    this.state = this.getStateFromStores();
+    console.log(this.state)
+  }
+  
+  loginClick() {
+    LoginActions.login({name: 1})
   }
   
   render() {
@@ -38,7 +41,7 @@ class App extends Component {
         <Login />
         <Balance />
         <Payment />
-        <button onClick={this.click} />
+        <button onClick={this.loginClick} />
       </div>
     )
   }

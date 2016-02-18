@@ -1,9 +1,9 @@
 import alt from '../alt';
-import AppActions from '../actions';
+import AppActions from '../actions/appactions';
 
 class AppStore {
   constructor() {
-    this.data = [];
+    this.data = {};
     
     this.bindListeners({
       handleUpdate: AppActions.UPDATE,
