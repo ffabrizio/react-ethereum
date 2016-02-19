@@ -1,19 +1,13 @@
 console.log('main.js')
 
 import React from 'react';
+import Main from './components/Main';
 import {render} from 'react-dom';
-import Greeter from './components/greeter';
-import Login from './components/login';
-import Payment from './components/payment';
-import Balance from './components/balance';
+import dispatcher from './dispatcher';
 
 import './styles/main.css';
+dispatcher.dispatch('APP_INIT');
 
 render(
-  <main>
-    <Greeter />
-    <Login />
-    <Balance />
-    <Payment />
-  </main>, 
+  <Main />, 
   document.getElementById('root'));

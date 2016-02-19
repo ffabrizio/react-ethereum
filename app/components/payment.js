@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import keys from '../keys.json';
 
-class Payment extends Component{
+class Payment extends Component {
+  
   render() {
     return (
       <div>

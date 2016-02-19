@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import Transactions from './transactions';
+import Transactions from './Transactions';
 
 import keys from '../keys.json';
 
-class Balance extends Component{
+class Balance extends Component {
+  
   render() {
     return (
       <div>
