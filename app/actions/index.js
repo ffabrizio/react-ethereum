@@ -7,10 +7,10 @@ class Actions {
         this.generateActions (
           
             'login',
-            'register'
-            //'viewaccount',
-            //'viewtransactions',
-            //'transfer'
+            'register',
+            'viewaccount',
+            'viewtransactions',
+            'transfer'
             
         )
         
