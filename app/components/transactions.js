@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
-import keys from '../keys.json';
+import keys from '../keys.json'
 
-class Transactions extends Component{
+class Transactions extends Component {
+  
   render() {
+    
     return (
+      
       <div>
         <h4>Transactions</h4>
         <ul>
@@ -21,7 +24,8 @@ class Transactions extends Component{
           </li>
         </ul>
       </div>
-    );
+      
+    )
   }
 }
 

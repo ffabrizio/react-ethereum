@@ -34,7 +34,7 @@ module.exports = {
   
   plugins: [
     new HtmlWebpackPlugin({
-      template: __dirname + "/app/templates/index.tmpl.html"
+      template: __dirname + "/app/views/main.html"
     }),
     new webpack.HotModuleReplacementPlugin()
   ],

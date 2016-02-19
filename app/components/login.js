@@ -1,33 +1,54 @@
 import React, {Component} from 'react'
-import LoginActions from '../actions/loginactions'
-import LoginStore from '../stores/loginstore'
-import keys from '../keys.json';
+import AccountStore from '../stores/accountstore'
+import Actions from '../actions'
+import keys from '../keys.json'
 
-class Login extends Component{
+class Login extends Component {
 
   render() {
-    var all, loginBtn, regBtn;
-    if (this.props.loggedin !== true) {
-      loginBtn = <button onClick={this.loginClick}>Login</button>;
-      regBtn = <button onClick={this.regClick}>Register</button>;
-      all = <span>{loginBtn} | {regBtn}</span>
+    
+    let wrapper
+    let loginBtn
+    let regBtn
+
+    if (!this.props.loggedin) {
+
+      loginBtn = <button onClick={this.loginClick}>Login</button>
+      regBtn = <button onClick={this.registerClick}>Register</button>
+      wrapper = <span>{loginBtn} | {regBtn}</span>
+      
     } else {
-      all = <span>Welcome {this.props.name}</span>
+      
+      wrapper = <span>{this.props.msg}</span>
+    
     }
+    
     return (
-      <span>{all}</span>
+      <div>
+        {wrapper}
+      </div>
+      
     );
   }
   
   loginClick() {
-    LoginActions.login({name: 'John'})
+    
+    Actions.login({name: 'John'})
+    
   }
   
-  regClick() {
-    LoginActions.register({name: 'Jack'})
+  registerClick() {
+    
+    Actions.register({name: 'Jack'})
+    
   }
 }
 
+Login.propTypes = { 
+  
+  loggedin: React.PropTypes.bool, 
+  name: React.PropTypes.string 
+  
+ }
 
-Login.propTypes = { loggedin: React.PropTypes.bool, name: React.PropTypes.string };
 export default Login
