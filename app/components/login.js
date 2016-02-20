@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import AccountStore from '../stores/accountstore'
 import Actions from '../actions'
 import keys from '../keys.json'
+import styles from '../styles/login.css'
+
 
 class Login extends Component {
 
@@ -15,7 +17,7 @@ class Login extends Component {
 
       loginBtn = <button onClick={this.loginClick}>Login</button>
       regBtn = <button onClick={this.registerClick}>Register</button>
-      wrapper = <span>{loginBtn} | {regBtn}</span>
+      wrapper = <span>{loginBtn} {regBtn}</span>
       
     } else {
       
@@ -24,7 +26,7 @@ class Login extends Component {
     }
     
     return (
-      <div>
+      <div className={styles.wrapper}>
         {wrapper}
       </div>
       

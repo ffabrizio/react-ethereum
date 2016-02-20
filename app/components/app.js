@@ -12,6 +12,7 @@ class App extends Component {
     
     super(props)
     this.state = this.refresh()
+    AccountStore.listen(this.onChange.bind(this))
     
   }
   
@@ -23,18 +24,6 @@ class App extends Component {
     
   }
   
-  componentDidMount() {
-    
-    AccountStore.listen(this.onChange.bind(this))
-    
-  }
-  
-  componentWillUnmount() {
-    
-    AccountStore.unlisten(this.onChange.bind(this))
-    
-  }
-
   onChange() {
     
     this.setState(this.refresh())
@@ -53,9 +42,9 @@ class App extends Component {
     return (
       
       <div>
-        <Greeter />
-        <Login loggedin={loggedin} msg={msg} />
-        <hr />
+        <Greeter>
+          <Login loggedin={loggedin} msg={msg} />
+        </Greeter>
         <Balance />
         <Payment />
       </div>

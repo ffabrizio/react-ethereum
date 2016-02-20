@@ -2,7 +2,7 @@
   "welcome": "Welcome to the Ξthereum ÐAPP",
   "balance": {
     "address": "Address",
-    "value": "Balance"
+    "value": "Amount"
   },
   "transactions": {
     "from": "From",

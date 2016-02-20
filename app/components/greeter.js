@@ -9,12 +9,12 @@ class Greeter extends Component {
     return (
       
       <div className={styles.root}>
-        {keys.welcome}
+        <span className={styles.msg}>{keys.welcome}</span>
+        {this.props.children}
       </div>
       
     )
   }
 }
-
 
 export default Greeter
