@@ -12,15 +12,14 @@ class App extends Component {
     
     super(props)
     this.state = this.refresh()
+    
     AccountStore.listen(this.onChange.bind(this))
     
   }
   
   refresh() {
     
-    let storeState = AccountStore.getState()
-    console.log(storeState)
-    return storeState
+    return AccountStore.getState()
     
   }
   
@@ -33,20 +32,25 @@ class App extends Component {
   render() {
     
     let msg = ''
-    let loggedin = this.state.accounts.length > 0
+    let securenodes
     
-    if (loggedin) {
-      msg = 'Welcome back, ' + this.state.accounts[0].name
+    if (this.state.loggedin) {
+      msg = 'Welcome back'
+      
+      securenodes = [
+        <Balance key='bal' />,
+        <Payment key='pay' />
+      ]
     }
+    
     
     return (
       
       <div>
         <Greeter>
-          <Login loggedin={loggedin} msg={msg} />
+          <Login loggedin={this.state.loggedin} msg={msg} />
         </Greeter>
-        <Balance />
-        <Payment />
+        {securenodes}
       </div>
       
     )

@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
+
 import Transactions from './transactions'
+
 import keys from '../keys.json'
 
 class Balance extends Component {

@@ -1,23 +1,24 @@
 import React, {Component} from 'react'
-import AccountStore from '../stores/accountstore'
-import Actions from '../actions'
+
+import RaisedButton from 'material-ui/lib/raised-button'
+import FontIcon from 'material-ui/lib/font-icon'
+
+import AuthDialog from './authdialog'
+
 import keys from '../keys.json'
+
 import styles from '../styles/login.css'
 
 
 class Login extends Component {
-
+  
   render() {
     
     let wrapper
-    let loginBtn
-    let regBtn
 
     if (!this.props.loggedin) {
 
-      loginBtn = <button onClick={this.loginClick}>Login</button>
-      regBtn = <button onClick={this.registerClick}>Register</button>
-      wrapper = <span>{loginBtn} {regBtn}</span>
+      wrapper = <RaisedButton label="Authorise" secondary={true} onTouchTap={this.handleAuth.bind(this)} />
       
     } else {
       
@@ -28,20 +29,15 @@ class Login extends Component {
     return (
       <div className={styles.wrapper}>
         {wrapper}
+        <AuthDialog ref='authdialog' />
       </div>
       
     );
   }
   
-  loginClick() {
-    
-    Actions.login({name: 'John'})
-    
-  }
-  
-  registerClick() {
-    
-    Actions.register({name: 'Jack'})
+  handleAuth() {
+
+    this.refs.authdialog.handleOpen()
     
   }
 }
