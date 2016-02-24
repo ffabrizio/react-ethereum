@@ -10,8 +10,8 @@ class Login extends Component {
   static propTypes = { 
   
     loggedin: React.PropTypes.bool, 
-    name: React.PropTypes.string 
-    
+    name: React.PropTypes.string,
+    fetching: React.PropTypes.bool
   }
 
   render() {
@@ -23,7 +23,6 @@ class Login extends Component {
     if (!this.props.loggedin) {
 
       loginBtn = <button onClick={this.loginClick}>Login</button>
-      regBtn = <button onClick={this.registerClick}>Register</button>
       wrapper = <span>{loginBtn} {regBtn}</span>
       
     } else {
@@ -34,6 +33,7 @@ class Login extends Component {
     
     return (
       <div className={styles.wrapper}>
+        <span className={(this.props.fetching ? styles.show : styles.hide)}>Loading ...</span>
         {wrapper}
       </div>
       
@@ -42,13 +42,7 @@ class Login extends Component {
   
   loginClick() {
     
-    Actions.login({name: 'John'})
-    
-  }
-  
-  registerClick() {
-    
-    Actions.register({name: 'Jack'})
+    Actions.login({input: 'x'})
     
   }
 }

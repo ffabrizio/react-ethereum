@@ -5,3 +5,11 @@
 .wrapper button {
   font-size: 0.8rem;
 }
+
+.hide {
+  display: none
+}
+
+.show {
+  display: block
+}
