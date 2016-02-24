@@ -3,40 +3,21 @@ import Greeter from './greeter'
 import Login from './login'
 import Payment from './payment'
 import Balance from './balance'
-import AccountStore from '../stores/accountstore'
-import Actions from '../actions'
 
 class App extends Component {
-
-  constructor(props) {
-    
-    super(props)
-    this.state = this.refresh()
-    AccountStore.listen(this.onChange.bind(this))
-    
-  }
-  
-  refresh() {
-    
-    let storeState = AccountStore.getState()
-    console.log(storeState)
-    return storeState
-    
-  }
-  
-  onChange() {
-    
-    this.setState(this.refresh())
-    
-  }
 
   render() {
     
     let msg = ''
-    let loggedin = this.state.accounts.length > 0
+    let loggedin = this.props.accounts.length > 0
+    let nodes = []
     
     if (loggedin) {
-      msg = 'Welcome back, ' + this.state.accounts[0].name
+      msg = 'Welcome back, ' + this.props.accounts[0].id
+      nodes = [
+        <Balance key='balance' />,
+        <Payment key='payment' />
+      ]
     }
     
     return (
@@ -45,8 +26,7 @@ class App extends Component {
         <Greeter>
           <Login loggedin={loggedin} msg={msg} />
         </Greeter>
-        <Balance />
-        <Payment />
+        {nodes}
       </div>
       
     )

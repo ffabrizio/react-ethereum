@@ -6,6 +6,13 @@ import styles from '../styles/login.css'
 
 
 class Login extends Component {
+  
+  static propTypes = { 
+  
+    loggedin: React.PropTypes.bool, 
+    name: React.PropTypes.string 
+    
+  }
 
   render() {
     
@@ -30,7 +37,7 @@ class Login extends Component {
         {wrapper}
       </div>
       
-    );
+    )
   }
   
   loginClick() {
@@ -45,12 +52,5 @@ class Login extends Component {
     
   }
 }
-
-Login.propTypes = { 
-  
-  loggedin: React.PropTypes.bool, 
-  name: React.PropTypes.string 
-  
- }
 
 export default Login
