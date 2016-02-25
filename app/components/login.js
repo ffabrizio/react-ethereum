@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import RaisedButton from 'material-ui/lib/raised-button'
 import RefreshIndicator from 'material-ui/lib/refresh-indicator'
-import AccountStore from '../stores/accountstore'
+import AuthDialog from './authdialog'
+
 import Actions from '../actions'
 import keys from '../keys.json'
 import styles from '../styles/login.css'
@@ -9,11 +10,19 @@ import styles from '../styles/login.css'
 
 class Login extends Component {
   
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      open: false
+    }
+  }
+  
   static propTypes = { 
   
     loggedin: React.PropTypes.bool, 
-    name: React.PropTypes.string,
     fetching: React.PropTypes.bool
+    
   }
   
   render() {
@@ -29,7 +38,7 @@ class Login extends Component {
 
     if (!this.props.loggedin) {
 
-      loginBtn = <RaisedButton onClick={this.loginClick} label="Login" />
+      loginBtn = <RaisedButton onClick={this.loginClick.bind(this)} label="Login" />
       wrapper = <span>{loginBtn} {regBtn}</span>
       
     } else {
@@ -48,6 +57,8 @@ class Login extends Component {
             top={10}
             status={(this.props.fetching ? "loading" : "hide")}
           />
+          
+          <AuthDialog dialogopen={this.props.dialogopen} />
       </div>
       
     )
@@ -55,8 +66,7 @@ class Login extends Component {
   
   loginClick() {
     
-    Actions.login({input: 'x'})
-    
+    Actions.openLoginDialog();
   }
 }
 

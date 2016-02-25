@@ -5,20 +5,22 @@ import FlatButton from 'material-ui/lib/flat-button'
 import RaisedButton from 'material-ui/lib/raised-button'
 import TextField from 'material-ui/lib/text-field';
 
-import AccountStore from '../stores/accountstore'
 import Actions from '../actions'
 
 import keys from '../keys.json'
 
 class AuthDialog extends Component {
   
-  
   constructor(props) {
     super(props)
     
     this.state = {
-      open: false
+      open: this.props.dialogopen
     }
+  }
+  static propTypes = { 
+  
+    dialogopen: React.PropTypes.bool
     
   }
   
@@ -31,9 +33,8 @@ class AuthDialog extends Component {
   }
 
   handleAuth() {
-    console.log(this.state)
     Actions.login({key: this.state.key, pass: this.state.pass})
-    this.setState({open: false});
+    Actions.closeLoginDialog()
   }
   
   handleKeyChange(event) {
@@ -69,7 +70,7 @@ class AuthDialog extends Component {
         title="Authorisation"
         actions={actions}
         modal={true}
-        open={this.state.open}
+        open={this.props.dialogopen}
         onRequestClose={this.handleClose.bind(this)}
       >
         <TextField

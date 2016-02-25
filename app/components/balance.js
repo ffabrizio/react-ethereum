@@ -5,14 +5,25 @@ import Transactions from './transactions'
 import keys from '../keys.json'
 
 class Balance extends Component {
+  static propTypes = { 
   
-  render() {
+    accounts: React.PropTypes.array
     
+  }
+  render() {
+    let rows = [];
+    this.props.accounts.forEach(function(account) {
+      rows.push(
+        <div key={account.addr}>
+          <p>{keys.balance.address}: {account.addr} </p>
+          <p>{keys.balance.value}: {account.eth}</p>
+        </div>
+      )
+    })
     return (
       <div>
         <h4>Balance</h4>
-        <p>{keys.balance.address}: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx </p>
-        <p>{keys.balance.value}: xxxx xxxxx </p>
+        {rows}
         <Transactions />
       </div>
     )

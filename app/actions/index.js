@@ -6,9 +6,11 @@ class Actions {
     
     this.generateActions (
           
+      'openLoginDialog',
+      'closeLoginDialog',
       'login',
-      'viewaccount',
-      'viewtransactions',
+      'viewAccount',
+      'viewTransactions',
       'transfer'
             
     )

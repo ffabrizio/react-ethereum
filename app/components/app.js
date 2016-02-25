@@ -16,7 +16,7 @@ class App extends Component {
     if (loggedin) {
       msg = 'Welcome back, ' + this.props.accounts[0].id
       nodes = [
-        <Balance key={keys.components.balance} />,
+        <Balance key={keys.components.balance} accounts={this.props.accounts} />,
         <Payment key={keys.components.payment} />
       ]
     }
@@ -25,7 +25,7 @@ class App extends Component {
       
       <div>
         <Greeter>
-          <Login loggedin={loggedin} msg={msg} fetching={this.props.fetching} />
+          <Login loggedin={loggedin} msg={msg} dialogopen={this.props.dialogopen}/>
         </Greeter>
         {nodes}
       </div>
