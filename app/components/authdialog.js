@@ -18,18 +18,13 @@ class AuthDialog extends Component {
       open: this.props.dialogopen
     }
   }
+  
   static propTypes = { 
-  
     dialogopen: React.PropTypes.bool
-    
-  }
-  
-  handleOpen() {
-    this.setState({open: true});
   }
   
   handleClose() {
-    this.setState({open: false});
+    Actions.closeLoginDialog()
   }
 
   handleAuth() {

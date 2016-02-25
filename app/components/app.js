@@ -10,11 +10,11 @@ class App extends Component {
   render() {
     
     let msg = ''
-    let loggedin = this.props.accounts != null && this.props.accounts.length > 0
+    let loggedin = this.props.accounts.length > 0
     let nodes = []
     
     if (loggedin) {
-      msg = 'Welcome back, ' + this.props.accounts[0].id
+      msg = 'Welcome back'
       nodes = [
         <Balance key={keys.components.balance} accounts={this.props.accounts} />,
         <Payment key={keys.components.payment} />

@@ -1,10 +1,10 @@
-/* global $ */
 import alt from '../alt'
+import async from 'async'
 import LightWallet from 'eth-lightwallet'
 import Web3 from 'web3'
 import HookedWeb3Provider from 'hooked-web3-provider'
 import Actions from '../actions'
-import async from 'async'
+
 
 class AccountStore {
   
@@ -22,6 +22,10 @@ class AccountStore {
     this.setEtherbase(args, (data) => this.setState({accounts: data}))
   }	
   
+  getHost() {
+    return 'http://ethnode.cloudapp.net:8545'
+  }
+  
   setEtherbase(args, cb) {
     this.setState({fetching: true})
     
@@ -30,7 +34,7 @@ class AccountStore {
       keystore.generateNewAddress(pwDerivedKey, 3)
       
       let ethProvider = new HookedWeb3Provider({
-        host: 'http://ethnode.cloudapp.net:8545',
+        host: this.getHost(),
         transaction_signer: keystore
       })
       
