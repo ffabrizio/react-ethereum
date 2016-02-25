@@ -5,7 +5,6 @@ import TableRow from 'material-ui/lib/table/table-row'
 import TableHeader from 'material-ui/lib/table/table-header'
 import TableRowColumn from 'material-ui/lib/table/table-row-column'
 import TableBody from 'material-ui/lib/table/table-body'
-import Transactions from './transactions'
 
 import keys from '../keys.json'
 
@@ -27,7 +26,7 @@ class Balance extends Component {
     return (
       <div>
         <h4>Balance</h4>
-        <Table>
+        <Table selectable={false}>
           <TableHeader>
             <TableRow>
               <TableHeaderColumn>{keys.balance.address}</TableHeaderColumn>
@@ -38,7 +37,6 @@ class Balance extends Component {
             {rows}
           </TableBody>
         </Table>
-        <Transactions />
       </div>
     )
   }

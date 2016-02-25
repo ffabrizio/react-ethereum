@@ -14,7 +14,7 @@ class Transactions extends Component {
     return (
       <div>
         <h4>Transactions</h4>
-        <Table>
+        <Table selectable={false}>
           <TableHeader>
             <TableRow>
               <TableHeaderColumn>{keys.transactions.date}</TableHeaderColumn>
