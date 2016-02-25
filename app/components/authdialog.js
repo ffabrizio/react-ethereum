@@ -15,12 +15,14 @@ class AuthDialog extends Component {
     super(props)
     
     this.state = {
-      open: this.props.dialogopen
+      open: this.props.dialogopen,
+      passPhrase: this.props.genkey
     }
   }
   
   static propTypes = { 
-    dialogopen: React.PropTypes.bool
+    dialogopen: React.PropTypes.bool,
+    passPhrase: React.PropTypes.string
   }
   
   handleClose() {
@@ -30,6 +32,10 @@ class AuthDialog extends Component {
   handleAuth() {
     Actions.login({key: this.state.key, pass: this.state.pass})
     Actions.closeLoginDialog()
+  }
+  
+  handleAutogen() {
+    Actions.newKey()
   }
   
   handleKeyChange(event) {
@@ -53,7 +59,7 @@ class AuthDialog extends Component {
         onTouchTap={this.handleClose.bind(this)}
       />,
       <FlatButton
-        label="Submit"
+        label="Import passphrase"
         primary={true}
         keyboardFocused={true}
         onTouchTap={this.handleAuth.bind(this)}
@@ -69,14 +75,16 @@ class AuthDialog extends Component {
         onRequestClose={this.handleClose.bind(this)}
       >
         <TextField
-          floatingLabelText="Your secure key"
+          floatingLabelText="Your passphrase"
           multiLine={true}
           rows={5}
+          value={this.props.genkey}
           onChange={this.handleKeyChange.bind(this)}
-        />
+        /> <i onChange={this.handleAutogen.bind(this)} class="material-icons">&#xE800;</i>
         <br />
         <TextField
           floatingLabelText="Your password"
+          type='password'
           onChange={this.handlePasswordChange.bind(this)}
         />
       </Dialog>

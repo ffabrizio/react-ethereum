@@ -15,10 +15,10 @@ class App extends Component {
     
     if (loggedin) {
       msg = 'Welcome back'
-      nodes = [
+      nodes.push (
         <Balance key={keys.components.balance} accounts={this.props.accounts} />,
         <Payment key={keys.components.payment} />
-      ]
+      )
     }
     
     return (

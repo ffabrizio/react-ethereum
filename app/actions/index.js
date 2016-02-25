@@ -9,6 +9,7 @@ class Actions {
       'openLoginDialog',
       'closeLoginDialog',
       'login',
+      'createNewAccount',
       'viewAccount',
       'viewTransactions',
       'transfer'
