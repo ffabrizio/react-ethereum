@@ -1,0 +1,14 @@
+{
+  "welcome": "Welcome to the Ξthereum ÐAPP",
+  "balance": {
+    "address": "Address",
+    "value": "Amount"
+  },
+  "transactions": {
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "value": "Value",
+    "status": ["Pending", "Complete"]
+  }
+}
