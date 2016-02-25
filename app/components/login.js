@@ -1,24 +1,36 @@
 import React, {Component} from 'react'
-
 import RaisedButton from 'material-ui/lib/raised-button'
-import FontIcon from 'material-ui/lib/font-icon'
-
-import AuthDialog from './authdialog'
-
+import RefreshIndicator from 'material-ui/lib/refresh-indicator'
+import AccountStore from '../stores/accountstore'
+import Actions from '../actions'
 import keys from '../keys.json'
-
 import styles from '../styles/login.css'
 
 
 class Login extends Component {
   
+  static propTypes = { 
+  
+    loggedin: React.PropTypes.bool, 
+    name: React.PropTypes.string,
+    fetching: React.PropTypes.bool
+  }
+  
   render() {
     
+    const loadingStyle = {
+      display: 'inline-block',
+      position: 'relative',
+    }
+    
     let wrapper
+    let loginBtn
+    let regBtn
 
     if (!this.props.loggedin) {
 
-      wrapper = <RaisedButton label="Authorise" secondary={true} onTouchTap={this.handleAuth.bind(this)} />
+      loginBtn = <RaisedButton onClick={this.loginClick} label="Login" />
+      wrapper = <span>{loginBtn} {regBtn}</span>
       
     } else {
       
@@ -29,24 +41,23 @@ class Login extends Component {
     return (
       <div className={styles.wrapper}>
         {wrapper}
-        <AuthDialog ref='authdialog' />
+        <RefreshIndicator
+            style={loadingStyle}
+            size={20}
+            left={20}
+            top={10}
+            status={(this.props.fetching ? "loading" : "hide")}
+          />
       </div>
       
-    );
+    )
   }
   
-  handleAuth() {
-
-    this.refs.authdialog.handleOpen()
+  loginClick() {
+    
+    Actions.login({input: 'x'})
     
   }
 }
-
-Login.propTypes = { 
-  
-  loggedin: React.PropTypes.bool, 
-  name: React.PropTypes.string 
-  
- }
 
 export default Login
