@@ -30,8 +30,8 @@ class Balance extends Component {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHeaderColumn>Account</TableHeaderColumn>
-              <TableHeaderColumn>Balance</TableHeaderColumn>
+              <TableHeaderColumn>{keys.balance.address}</TableHeaderColumn>
+              <TableHeaderColumn>{keys.balance.value}</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody>

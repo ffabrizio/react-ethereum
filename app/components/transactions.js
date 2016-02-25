@@ -1,4 +1,10 @@
 import React, {Component} from 'react'
+import Table from 'material-ui/lib/table/table'
+import TableHeaderColumn from 'material-ui/lib/table/table-header-column'
+import TableRow from 'material-ui/lib/table/table-row'
+import TableHeader from 'material-ui/lib/table/table-header'
+import TableRowColumn from 'material-ui/lib/table/table-row-column'
+import TableBody from 'material-ui/lib/table/table-body'
 import keys from '../keys.json'
 
 class Transactions extends Component {
@@ -8,20 +14,31 @@ class Transactions extends Component {
     return (
       <div>
         <h4>Transactions</h4>
-        <ul>
-          <li>
-            {keys.transactions.date}: xxxxxxxxxxxxxxxx <br />
-            {keys.transactions.from}: xx <br />
-            {keys.transactions.value}: xxxxxxx <br />
-            {keys.transactions.status[1]}
-          </li>
-          <li>
-            {keys.transactions.date}: xxxxxxxxxxxxxxxx <br />
-            {keys.transactions.to}: xx <br />
-            {keys.transactions.value}: xxxxxxx <br />
-            {keys.transactions.status[0]}
-          </li>
-        </ul>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>{keys.transactions.date}</TableHeaderColumn>
+              <TableHeaderColumn>{keys.transactions.from}</TableHeaderColumn>
+              <TableHeaderColumn>{keys.transactions.value}</TableHeaderColumn>
+              <TableHeaderColumn></TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableRowColumn>xxxxxxxxxxxxxxxx</TableRowColumn>
+              <TableRowColumn>xxxxxxxxxxxxxxxx</TableRowColumn>
+              <TableRowColumn>xxxxxxxxxxxxxxxx</TableRowColumn>
+              <TableRowColumn>{keys.transactions.status[0]}</TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>xxxxxxxxxxxxxxxx</TableRowColumn>
+              <TableRowColumn>xxxxxxxxxxxxxxxx</TableRowColumn>
+              <TableRowColumn>xxxxxxxxxxxxxxxx</TableRowColumn>
+              <TableRowColumn>{keys.transactions.status[1]}</TableRowColumn>
+            </TableRow>
+          </TableBody>
+        </Table>
+
       </div>
     )
   }
