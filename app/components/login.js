@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import RaisedButton from 'material-ui/lib/raised-button'
-import RefreshIndicator from 'material-ui/lib/refresh-indicator'
 import AuthDialog from './authdialog'
 
 import Actions from '../actions'
@@ -18,27 +17,14 @@ class Login extends Component {
     }
   }
   
-  static propTypes = { 
-  
-    loggedin: React.PropTypes.bool, 
-    fetching: React.PropTypes.bool
-    
-  }
-  
   render() {
-    
-    const loadingStyle = {
-      display: 'inline-block',
-      position: 'relative',
-    }
-    
     let wrapper
     let loginBtn
     let regBtn
 
     if (!this.props.loggedin) {
 
-      loginBtn = <RaisedButton onClick={this.loginClick.bind(this)} label="Login" />
+      loginBtn = <RaisedButton onClick={this.loginClick.bind(this)} label="Authorise" disabled={this.props.fetching} />
       wrapper = <span>{loginBtn} {regBtn}</span>
       
     } else {
@@ -50,15 +36,7 @@ class Login extends Component {
     return (
       <div className={styles.wrapper}>
         {wrapper}
-        <RefreshIndicator
-            style={loadingStyle}
-            size={20}
-            left={20}
-            top={10}
-            status={(this.props.fetching ? "loading" : "hide")}
-          />
-          
-          <AuthDialog dialogopen={this.props.dialogopen} />
+        <AuthDialog dialogopen={this.props.dialogopen} autogen={this.props.autogen} />
       </div>
       
     )

@@ -13,6 +13,7 @@ class AccountStore {
     this.accounts = []
     this.fetching = false
     this.web3
+    this.seed
     
     this.bindActions(Actions)
     
@@ -22,11 +23,29 @@ class AccountStore {
     this.setEtherbase(args, (data) => this.setState({accounts: data}))
   }	
   
+  onGenerateNewKey() {
+    let s = LightWallet.keystore.generateRandomSeed(this.getEntropy(500))
+    this.setState({seed: s});
+  }
+  
+  getEntropy(length) {
+    var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
+    if (! length) {
+        length = Math.floor(Math.random() * chars.length);
+    }
+
+    var str = '';
+    for (var i = 0; i < length; i++) {
+        str += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return str;
+}
+  
   getHost() {
     return 'http://ethnode.cloudapp.net:8545'
   }
   
-  setEtherbase(args, cb) {
+  setEtherbase(args, callback) {
     this.setState({fetching: true})
     
     LightWallet.keystore.deriveKeyFromPassword(args.pass, (err, pwDerivedKey) => {
@@ -40,19 +59,19 @@ class AccountStore {
       
       this.setState({web3: new Web3(ethProvider)})
       this.getBalances(keystore, (data) => {
+        callback(data)
+        
         this.setState({fetching: false})
-        cb(data)
       })
     })
   }
   
-  getBalances(keystore, cb) { 
+  getBalances(keystore, callback) { 
     let addresses = keystore.getAddresses()
     let data = []
-    let web3 = this.web3
     
-    async.map(addresses, web3.eth.getBalance, function(err, balances) {
-      async.map(addresses, web3.eth.getTransactionCount, function(err, nonces) {
+    async.map(addresses, this.web3.eth.getBalance, (err, balances) => {
+      async.map(addresses, this.web3.eth.getTransactionCount, (err, nonces) => {
         for (var i=0; i<addresses.length; ++i) {
           data.push ({
             addr: '0x' + addresses[i],
@@ -62,7 +81,7 @@ class AccountStore {
           })
         }
         
-        cb(data);
+        callback(data);
       });
     });  
 }

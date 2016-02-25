@@ -7,8 +7,6 @@ import LoginDialogStore from './stores/logindialogstore'
 import App from './components/app'
 import Actions from './actions'
 
-import './styles/main.css'
-
 injectTapEventPlugin()
 
 render (
@@ -17,6 +15,7 @@ render (
     stores={[AccountStore, LoginDialogStore]}
     inject={{
       
+      autogen: () => AccountStore.getState().seed,
       accounts: () => AccountStore.getState().accounts,
       fetching: () => AccountStore.getState().fetching,
       dialogopen: () => LoginDialogStore.getState().open

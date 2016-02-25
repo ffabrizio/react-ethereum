@@ -15,14 +15,13 @@ class AuthDialog extends Component {
     super(props)
     
     this.state = {
-      open: this.props.dialogopen,
-      passPhrase: this.props.genkey
+      open: this.props.dialogopen
     }
   }
   
   static propTypes = { 
     dialogopen: React.PropTypes.bool,
-    passPhrase: React.PropTypes.string
+    autogen: React.PropTypes.string
   }
   
   handleClose() {
@@ -35,20 +34,26 @@ class AuthDialog extends Component {
   }
   
   handleAutogen() {
-    Actions.newKey()
+    Actions.generateNewKey()
+    
+    setTimeout(() => {
+      this.setState({
+        key: this.props.autogen
+      })
+    }, 50)
   }
   
   handleKeyChange(event) {
     this.setState({
-      key: event.target.value,
-    });
-  };
+      key: event.target.value
+    })
+  }
   
   handlePasswordChange(event) {
     this.setState({
-      pass: event.target.value,
-    });
-  };
+      pass: event.target.value
+    })
+  }
   
   render() {
     
@@ -64,7 +69,7 @@ class AuthDialog extends Component {
         keyboardFocused={true}
         onTouchTap={this.handleAuth.bind(this)}
       />
-    ];
+    ]
 
     return (
       <Dialog
@@ -78,9 +83,10 @@ class AuthDialog extends Component {
           floatingLabelText="Your passphrase"
           multiLine={true}
           rows={5}
-          value={this.props.genkey}
+          value={this.state.key}
           onChange={this.handleKeyChange.bind(this)}
-        /> <i onChange={this.handleAutogen.bind(this)} class="material-icons">&#xE800;</i>
+        /> 
+        <i onClick={this.handleAutogen.bind(this)} className="material-icons">&#xE800;</i>
         <br />
         <TextField
           floatingLabelText="Your password"
