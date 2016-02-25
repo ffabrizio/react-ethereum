@@ -36,7 +36,7 @@ class Login extends Component {
     return (
       <div className={styles.wrapper}>
         {wrapper}
-        <AuthDialog dialogopen={this.props.dialogopen} autogen={this.props.autogen} />
+        <AuthDialog {...this.props} />
       </div>
       
     )

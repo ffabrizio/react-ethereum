@@ -19,11 +19,6 @@ class AuthDialog extends Component {
     }
   }
   
-  static propTypes = { 
-    dialogopen: React.PropTypes.bool,
-    autogen: React.PropTypes.string
-  }
-  
   handleClose() {
     Actions.closeLoginDialog()
   }

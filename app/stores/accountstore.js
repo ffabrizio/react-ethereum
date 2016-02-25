@@ -60,7 +60,6 @@ class AccountStore {
       this.setState({web3: new Web3(ethProvider)})
       this.getBalances(keystore, (data) => {
         callback(data)
-        
         this.setState({fetching: false})
       })
     })
