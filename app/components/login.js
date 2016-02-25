@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import RaisedButton from 'material-ui/lib/raised-button'
+import RefreshIndicator from 'material-ui/lib/refresh-indicator'
 import AccountStore from '../stores/accountstore'
 import Actions from '../actions'
 import keys from '../keys.json'
@@ -13,8 +15,13 @@ class Login extends Component {
     name: React.PropTypes.string,
     fetching: React.PropTypes.bool
   }
-
+  
   render() {
+    
+    const loadingStyle = {
+      display: 'inline-block',
+      position: 'relative',
+    }
     
     let wrapper
     let loginBtn
@@ -22,7 +29,7 @@ class Login extends Component {
 
     if (!this.props.loggedin) {
 
-      loginBtn = <button onClick={this.loginClick}>Login</button>
+      loginBtn = <RaisedButton onClick={this.loginClick} label="Login" />
       wrapper = <span>{loginBtn} {regBtn}</span>
       
     } else {
@@ -33,8 +40,14 @@ class Login extends Component {
     
     return (
       <div className={styles.wrapper}>
-        <span className={(this.props.fetching ? styles.show : styles.hide)}>Loading ...</span>
         {wrapper}
+        <RefreshIndicator
+            style={loadingStyle}
+            size={20}
+            left={20}
+            top={10}
+            status={(this.props.fetching ? "loading" : "hide")}
+          />
       </div>
       
     )
