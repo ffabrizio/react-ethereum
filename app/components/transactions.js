@@ -6,7 +6,6 @@ class Transactions extends Component {
   render() {
     
     return (
-      
       <div>
         <h4>Transactions</h4>
         <ul>
@@ -24,7 +23,6 @@ class Transactions extends Component {
           </li>
         </ul>
       </div>
-      
     )
   }
 }

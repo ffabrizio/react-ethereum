@@ -45,14 +45,12 @@ class App extends Component {
     
     
     return (
-      
       <div>
         <Greeter>
           <Login loggedin={this.state.loggedin} msg={msg} />
         </Greeter>
         {securenodes}
       </div>
-      
     )
   }
 }

@@ -3,6 +3,7 @@ import alt from '../alt'
 import Actions from '../actions'
 
 class AccountStore {
+  
   constructor() {
 
     this.accounts = []

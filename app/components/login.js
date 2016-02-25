@@ -49,7 +49,6 @@ class Login extends Component {
             status={(this.props.fetching ? "loading" : "hide")}
           />
       </div>
-      
     )
   }
   
